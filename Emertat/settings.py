@@ -147,7 +147,7 @@ DEFAULT_FROM_EMAIL = 'Test <test@example.com>'
 # # 3. The default "from" address for outgoing emails
 # DEFAULT_FROM_EMAIL = 'Your Company Name <your_account@yourdomain.com>'
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,  # Disable logging to prevent unnecessary logs
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': True,  # Disable logging to prevent unnecessary logs
+# }
