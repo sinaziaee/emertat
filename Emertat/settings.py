@@ -131,21 +131,21 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'Test <test@example.com>'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# DEFAULT_FROM_EMAIL = 'Test <test@example.com>'
 
-# # 1. Specify which email backend Django should use
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# 1. Specify which email backend Django should use
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# # 2. SMTP server details
-# EMAIL_HOST = 'smtp.your-email-provider.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your_account@yourdomain.com'
-# EMAIL_HOST_PASSWORD = 'your_email_password'
+# 2. SMTP server details
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'social.emertatfarabar@gmail.com'
+EMAIL_HOST_PASSWORD = 'lhkd jmpf hagk nsry'
 
-# # 3. The default "from" address for outgoing emails
-# DEFAULT_FROM_EMAIL = 'Your Company Name <your_account@yourdomain.com>'
+# 3. The default "from" address for outgoing emails
+DEFAULT_FROM_EMAIL = 'Emertat Farabar <social.emertatfarabar@gmail.com>'
 
 # LOGGING = {
 #     'version': 1,

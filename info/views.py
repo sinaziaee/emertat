@@ -84,7 +84,7 @@ def price_inquiry(request):
             subject="New Price Inquiry",
             message=message_body,
             from_email=settings.DEFAULT_FROM_EMAIL,  # Make sure this is configured
-            recipient_list=["example@gmail.com"],
+            recipient_list=["social.emertatfarabar@gmail.com"],
         )
 
         # Use Django messages to show success once
