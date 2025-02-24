@@ -8,8 +8,14 @@ def about(request):
     return render(request, 'info/about.html')
 
 def contact(request):
-    contact = Contact.objects.first()  # Gets the first contact record
-    return render(request, 'info/contact.html', {'contact': contact})
+    try:
+        # Attempt to fetch data from the database
+        contact = Contact.objects.first()  # Gets the first contact record
+        return render(request, 'info/contact.html', {'contact': contact})
+    except OperationalError:
+        # If the table doesn't exist, render the template without the 'team' variable
+        print("------------- OperationalError -------------")
+        return render(request, 'info/contact.html')
 
 from django.db.utils import OperationalError
 
@@ -20,6 +26,7 @@ def team(request):
         return render(request, 'info/team.html', {'team': team_members})
     except OperationalError:
         # If the table doesn't exist, render the template without the 'team' variable
+        print("------------- OperationalError -------------")
         return render(request, 'info/team.html')
 
 def why(request):
