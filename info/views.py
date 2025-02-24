@@ -11,9 +11,16 @@ def contact(request):
     contact = Contact.objects.first()  # Gets the first contact record
     return render(request, 'info/contact.html', {'contact': contact})
 
+from django.db.utils import OperationalError
+
 def team(request):
-    team_members = Person.objects.all()
-    return render(request, 'info/team.html', {'team': team_members})
+    try:
+        # Attempt to fetch data from the database
+        team_members = Person.objects.all()
+        return render(request, 'info/team.html', {'team': team_members})
+    except OperationalError:
+        # If the table doesn't exist, render the template without the 'team' variable
+        return render(request, 'info/team.html')
 
 def why(request):
     return render(request, 'info/why.html')
