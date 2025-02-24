@@ -1,0 +1,174 @@
+<!-- your_app/templates/partials/header.html -->
+{% load static %}
+<header>
+  <div class="logo">
+    <img src="{% static 'info/images/logo2.png' %}" alt="Logo">
+  </div>
+
+  <!-- Hamburger Menu Button (Visible only on mobile) -->
+  <button class="hamburger-menu" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav id="main-nav">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/why">Why us</a></li>
+      <li><a href="/team">Team</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/price-inquiry">Price Inquiry</a></li>
+    </ul>
+  </nav>
+
+  <div class="logo hidden-logo">
+    <img src="{% static 'info/images/logo2.png' %}" alt="Logo">
+  </div>
+
+  <style>
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px; /* Reduced top padding */
+      flex-wrap: wrap;
+      position: relative;
+      background-color: #050A30; /* Added background color for consistency */
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0; /* Removed margin-bottom */
+    }
+
+    header .logo img {
+      height: 60px; /* Reduced logo size for mobile */
+      margin-right: 10px;
+      margin-left: 10px;
+      margin-top: 10px;
+    }
+
+    .hidden-logo {
+      visibility: hidden;
+      height: 60px; /* Reduced hidden logo size */
+      margin-right: 10px;
+    }
+
+    nav {
+      flex-grow: 1;
+      text-align: center;
+      margin-bottom: 0; /* Removed margin-bottom */
+    }
+
+    nav ul {
+      list-style: none;
+      display: inline-flex;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+      padding: 5px 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #FFFFFF;
+      font-size: 18px;
+    }
+
+    /* Hamburger Menu Styles */
+    .hamburger-menu {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      position: absolute;
+      top: 15px; /* Adjusted for better visual alignment */
+      right: 15px; /* Adjusted for better visual alignment */
+      z-index: 1000;
+    }
+
+    .hamburger-menu span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #FFFFFF;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* MEDIA QUERY for smaller screens */
+    @media (max-width: 768px) {
+      header {
+        padding: 5px 1px; /* Further reduced padding for mobile */
+      }
+
+      .hamburger-menu {
+        display: flex;
+        top: 20px; /* Adjusted for better visual alignment */
+        right: 20px; /* Adjusted for better visual alignment */
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 250px;
+        background: rgba(8, 20, 52, 0.99);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 60px;
+        transition: right 0.3s ease-in-out;
+        z-index: 999;
+      }
+
+      nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 20px;
+      }
+
+      nav ul li {
+        margin: 10px 0; /* Adjusted margin for mobile */
+      }
+
+      nav.active {
+        right: 0;
+      }
+
+      header .logo img {
+        height: 50px; /* Further reduced logo size for mobile */
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const nav = document.querySelector('#main-nav');
+
+      hamburgerMenu.addEventListener('click', function () {
+        nav.classList.toggle('active');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (!nav.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+          nav.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</header>

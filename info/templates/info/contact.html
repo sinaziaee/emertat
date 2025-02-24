@@ -1,180 +1,121 @@
-<!DOCTYPE html>
+<!-- your_app/templates/contact.html -->
+{% extends "base.html" %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emertat Farabar Transportation Company</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #FFFFFF;
-            background: url('{% static "info/images/background_contact.jpg" %}') no-repeat center center fixed;
-            background-size: cover;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-        }
-        header .logo {
-            display: flex;
-            align-items: center;
-        }
-        header .logo img {
-            height: 80px;
-            margin-right: 10px;
-        }
-        .hidden-logo {
-            visibility: hidden;
-            height: 80px;
-            margin-right: 10px;
-        }
-        nav {
-            flex-grow: 1;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            display: inline-flex;
-            margin: 0;
-            padding: 0;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #FFFFFF;
-            font-size: 18px;
-        }
-        .get-in-touch-section {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            padding: 50px 20px;
-        }
-        .get-in-touch-text {
-            flex: 1;
-            max-width: 50%;
-            padding: 20px;
-        }
-        .get-in-touch-text h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        .get-in-touch-text p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 18px;
-        }
-        .contact-info div {
-            flex: 1 1 calc(50% - 20px);
-        }
-        .contact-info div strong {
-            display: block;
-            margin-bottom: 5px;
-            color: #1E90FF;
-        }
-        .contact-item {
-            margin-bottom: 10px;
-        }
-        .laptop-image {
-            flex: 1;
-            max-width: 50%;
-            padding: 20px;
-        }
-        .laptop-image img {
-            width: 100%;
-            border-radius: 8px;
-        }
-    </style>
-</head>
-<body>
+{% block content %}
+<style>
+  body {
+    background: url('{% static "info/images/background_contact.jpg" %}') no-repeat center center fixed;
+    background-size: cover;
+  }
+  .get-in-touch-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 20px;
+  }
+  .get-in-touch-text {
+    flex: 1;
+    max-width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .get-in-touch-text h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  .get-in-touch-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 18px;
+  }
+  .contact-info div {
+    flex: 1 1 calc(50% - 20px);
+  }
+  .contact-info div strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #1E90FF;
+  }
+  .contact-item {
+    margin-bottom: 10px;
+  }
+  .laptop-image {
+    flex: 1;
+    max-width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
 
-<header>
-    <div class="logo">
-        <img src="{% static 'info/images/logo2.png' %}" alt="Logo">
-    </div>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/why">Why us</a></li>
-            <li><a href="/team">Team</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/price-inquiry">Price Inquiry</a></li>
-        </ul>
-    </nav>
-    <div class="logo hidden-logo">
-        <img src="{% static 'info/images/logo2.png' %}" alt="Logo">
-    </div>
-</header>
+  @media (max-width: 768px) {
+    .get-in-touch-text, .laptop-image {
+      max-width: 100%;
+    }
+    .get-in-touch-text h1 {
+      font-size: 28px;
+    }
+  }
+</style>
 
 <div class="get-in-touch-section">
-    <div class="get-in-touch-text">
-        <h1>GET IN TOUCH</h1>
-        <p>Get in touch with us for all your international logistics needs. Our friendly team is ready to assist you with tailored solutions and 24/7 support. Reach out today to start your journey to hassle-free global shipping.</p>
-        <div class="contact-info">
-            <div>
-                <strong>Phone Numbers</strong>
-                {% if contact.phone1 %}
-                <div class="contact-item">{{ contact.phone1 }}</div>
-                {% endif %}
-                {% if contact.phone2 %}
-                <div class="contact-item">{{ contact.phone2 }}</div>
-                {% endif %}
-            </div>
-            <div>
-                <strong>Email Addresses</strong>
-                {% if contact.email1 %}
-                <div class="contact-item">{{ contact.email1 }}</div>
-                {% endif %}
-                {% if contact.email2 %}
-                <div class="contact-item">{{ contact.email2 }}</div>
-                {% endif %}
-                {% if contact.email3 %}
-                <div class="contact-item">{{ contact.email3 }}</div>
-                {% endif %}
-            </div>
-            <div>
-                <strong>Website</strong>
-                {% if contact.website %}
-                <div class="contact-item">
-                    <a href="{{ contact.website }}" style="color: #FFFFFF; text-decoration: none;">
-                        {{ contact.website }}
-                    </a>
-                </div>
-                {% endif %}
-            </div>
-            <div>
-                <strong>Social Media</strong>
-                {% if contact.social1 %}
-                <div class="contact-item">{{ contact.social1 }}</div>
-                {% endif %}
-                {% if contact.social2 %}
-                <div class="contact-item">{{ contact.social2 }}</div>
-                {% endif %}
-                {% if contact.social3 %}
-                <div class="contact-item">{{ contact.social3 }}</div>
-                {% endif %}
-            </div>
-        </div>
+  <div class="get-in-touch-text">
+    <h1>GET IN TOUCH</h1>
+    <p>Get in touch with us for all your international logistics needs...</p>
+    <div class="contact-info">
+      <div>
+        <strong>Phone Numbers</strong>
+        {% if contact.phone1 %}
+          <div class="contact-item">{{ contact.phone1 }}</div>
+        {% endif %}
+        {% if contact.phone2 %}
+          <div class="contact-item">{{ contact.phone2 }}</div>
+        {% endif %}
+      </div>
+      <div>
+        <strong>Email Addresses</strong>
+        {% if contact.email1 %}
+          <div class="contact-item">{{ contact.email1 }}</div>
+        {% endif %}
+        {% if contact.email2 %}
+          <div class="contact-item">{{ contact.email2 }}</div>
+        {% endif %}
+        {% if contact.email3 %}
+          <div class="contact-item">{{ contact.email3 }}</div>
+        {% endif %}
+      </div>
+      <div>
+        <strong>Website</strong>
+        {% if contact.website %}
+          <div class="contact-item">
+            <a href="{{ contact.website }}" style="color: #FFFFFF; text-decoration: none;">
+              {{ contact.website }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+      <div>
+        <strong>Social Media</strong>
+        {% if contact.social1 %}
+          <div class="contact-item">{{ contact.social1 }}</div>
+        {% endif %}
+        {% if contact.social2 %}
+          <div class="contact-item">{{ contact.social2 }}</div>
+        {% endif %}
+        {% if contact.social3 %}
+          <div class="contact-item">{{ contact.social3 }}</div>
+        {% endif %}
+      </div>
     </div>
-    <div class="laptop-image">
-        <img src="{% static 'info/images/laptop.png' %}" alt="Laptop">
-    </div>
+  </div>
+  <div class="laptop-image">
+    <img src="{% static 'info/images/laptop.png' %}" alt="Laptop">
+  </div>
 </div>
-
-</body>
-</html>
+{% endblock content %}

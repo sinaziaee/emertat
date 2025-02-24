@@ -1,131 +1,93 @@
-<!DOCTYPE html>
+<!-- your_app/templates/about.html -->
+{% extends "base.html" %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emertat Farabar Transportation Company</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #FFFFFF;
-            background: url('{% static "info/images/background_about.jpg" %}') no-repeat center center fixed;
-            background-size: cover;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-        }
-        header .logo {
-            display: flex;
-            align-items: center;
-        }
-        header .logo img {
-            height: 80px;
-            margin-right: 10px;
-        }
-        .hidden-logo {
-            visibility: hidden;
-            height: 80px;
-            margin-right: 10px;
-        }
-        nav {
-            flex-grow: 1;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            display: inline-flex;
-            margin: 0;
-            padding: 0;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #FFFFFF;
-            font-size: 18px;
-        }
-        .about-us-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 50px 20px;
-        }
-        .about-us-text {
-            flex: 1;
-            max-width: 50%;
-            padding: 20px;
-        }
-        .about-us-text h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        .about-us-text p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        .about-us-arrow {
-            flex: 1;
-            max-width: 50%;
-            background-size: contain;
-            height: 300px;
-        }
-        .price-inquiry {
-            text-align: right;
-            margin-top: 20px;
-        }
-        .price-inquiry button {
-            background-color: #FFFFFF;
-            color: #0D1A37;
-            border: none;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-        .price-inquiry button:hover {
-            background-color: #CCCCCC;
-        }
-    </style>
-</head>
-<body>
+{% block content %}
+<style>
+  body {
+    background: url('{% static "info/images/background_about.jpg" %}') no-repeat center center fixed;
+    background-size: cover;
+  }
+  .about-us-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 20px;
+    flex-wrap: wrap; /* Allow wrapping for mobile */
+  }
+  .about-us-arrow {
+    flex: 1;
+    max-width: 50%;
+    background-size: contain;
+    height: 300px;
+    margin-bottom: 20px;
+  }
+  .about-us-text {
+    flex: 1;
+    max-width: 50%;
+    padding: 20px;
+  }
+  .about-us-text h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  .about-us-text p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .price-inquiry {
+    text-align: right;
+    margin-top: 20px;
+  }
+  .price-inquiry button {
+    background-color: #FFFFFF;
+    color: #0D1A37;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .price-inquiry button:hover {
+    background-color: #CCCCCC;
+  }
 
-<header>
-    <div class="logo">
-        <img src="{% static 'info/images/logo2.png' %}" alt="Logo">
-    </div>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/why">Why us</a></li>
-            <li><a href="/team">Team</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/price-inquiry">Price Inquiry</a></li>
-        </ul>
-    </nav>
-    <div class="logo hidden-logo">
-        <img src="{% static 'info/images/logo2.png' %}" alt="Logo">
-    </div>
-</header>
+  @media (max-width: 768px) {
+    .about-us-section {
+      padding: 20px 10px; /* Reduce padding for mobile */
+      flex-direction: column; /* Stack elements vertically */
+    }
+    .about-us-arrow, .about-us-text {
+      max-width: 100%;
+      text-align: center; /* Center-align text */
+    }
+    .about-us-text h1 {
+      font-size: 36px; /* Slightly larger font size for mobile */
+    }
+    .about-us-text p {
+      font-size: 16px; /* Slightly larger font size for mobile */
+    }
+    .price-inquiry {
+      text-align: center; /* Center-align the button */
+      margin-top: 20px;
+    }
+    .price-inquiry button {
+      width: 100%; /* Full-width button for better touch targets */
+      max-width: 300px; /* Limit button width */
+      margin: 0 auto; /* Center the button */
+    }
+  }
+</style>
 
 <div class="about-us-section">
-    <div class="about-us-arrow"></div>
-    <div class="about-us-text">
-        <h1>ABOUT US:</h1>
-        <p>At Emertat Frabar, we pride ourselves on over 20 years of excellence in international logistics. With a dedicated team and a customer-first approach, we aim to deliver superior service and foster long-term partnerships.</p>
-        <div class="price-inquiry">
-            <button onclick="window.location.href='/price-inquiry'">Price inquiry</button>
-        </div>
+  <div class="about-us-arrow"></div>
+  <div class="about-us-text">
+    <h1>ABOUT US:</h1>
+    <p>At Emertat Frabar, we pride ourselves on over 20 years of excellence...</p>
+    <div class="price-inquiry">
+      <button onclick="window.location.href='/price-inquiry'">Price inquiry</button>
     </div>
+  </div>
 </div>
-
-</body>
-</html>
+{% endblock content %}

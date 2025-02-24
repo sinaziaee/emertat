@@ -1,145 +1,92 @@
-<!DOCTYPE html>
+<!-- your_app/templates/home.html -->
+{% extends "base.html" %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emertat Farabar Transportation Company</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #FFFFFF;
-            background: url('{% static "info/images/background.jpg" %}') no-repeat center center fixed;
-            background-size: cover;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-        }
-        header .logo {
-            display: flex;
-            align-items: center;
-        }
-        header .logo img {
-            height: 80px;
-            margin-right: 10px;
-        }
-        .hidden-logo {
-            visibility: hidden;
-            height: 80px;
-            margin-right: 10px;
-        }
-        nav {
-            flex-grow: 1;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            display: inline-flex;
-            margin: 0;
-            padding: 0;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #FFFFFF;
-            font-size: 18px;
-        }
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            position: relative;
-        }
-        .hero h1 {
-            font-size: 36px;
-            margin: 20px 0;
-        }
-        .hero .arrows {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0;
-        }
-        .hero .arrows img {
-            height: 50px;
-            margin: 0 10px;
-        }
-        .description {
-            font-size: 18px;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        .truck-container {
-            position: relative;
-            width: 70%;
-            margin: 0 auto;
-            margin-bottom: 1px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .truck-image {
-            position: relative;
-            z-index: 2;
-            width: 600px;
-            height: auto;
-            display: block;
-        }
-        .arrow {
-            position: absolute;
-            z-index: 1;
-            width: 60%;
-            max-width: 300px;
-            height: auto;
-        }
-        .arrow:first-of-type {
-            left: 80px;
-            top: 100px;
-        }
-        .arrow:last-of-type {
-            right: 80px;
-            bottom: 100px;
-        }
-    </style>
-</head>
-<body>
+{% block content %}
+<style>
+  /* Page-specific styles */
+  body {
+    background: url('{% static "info/images/background.jpg" %}') no-repeat center center fixed;
+    background-size: cover;
+  }
 
-<header>
-    <div class="logo">
-        <img src="{% static 'info/images/logo2.png' %}" alt="Logo">
-    </div>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/why">Why us</a></li>
-            <li><a href="/team">Team</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/price-inquiry">Price Inquiry</a></li>
-        </ul>
-    </nav>
-    <div class="logo hidden-logo">
-        <img src="{% static 'info/images/logo2.png' %}" alt="Logo">
-    </div>
-</header>
+  .hero {
+    text-align: center;
+    padding: 50px 20px;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+  .truck-container {
+    position: relative;
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Let the images scale automatically. 
+     We already used "img { max-width: 100%; }" in base.html, 
+     so that helps for .truck-image and .arrow. */
+  .truck-image {
+    width: 600px; /* fallback for large screens */
+    /* Because of max-width: 100% in base.html, 
+       the truck image won't overflow on mobile. */
+    z-index: 2; /* Ensure the truck is above the arrows */
+    position: relative; /* Required for z-index to work */
+  }
+  .arrow {
+    position: absolute;
+    width: 60%;
+    max-width: 300px;
+    z-index: 1; /* Ensure the arrows are behind the truck */
+  }
+  .arrow:first-of-type {
+    left: 80px;
+    top: 100px;
+  }
+  .arrow:last-of-type {
+    right: 80px;
+    bottom: 100px;
+  }
+  .description {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    padding: 0 20px;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 28px;
+    }
+    .truck-container {
+      width: 90%;
+    }
+    /* We might adjust the arrow positions so they don't overlap awkwardly on smaller devices */
+    .arrow:first-of-type {
+      left: 10px;
+      top: 50px;
+    }
+    .arrow:last-of-type {
+      right: 10px;
+      bottom: 50px;
+    }
+  }
+</style>
 
 <div class="hero">
-    <h1>LEAVE YOUR CARGO TO EMERTAT FARABAR WITH EASE AND CONFIDENCE</h1>
-    <div class="truck-container">
-        <img src="{% static 'info/images/arrow-left.png' %}" class="arrow" alt="Left Arrow">
-        <img src="{% static 'info/images/truck.png' %}" class="truck-image" alt="Truck">
-        <img src="{% static 'info/images/arrow-right.png' %}" class="arrow" alt="Right Arrow">
-    </div>
-    <p class="description">
-        Welcome to our website, your trusted partner in international transportation and logistics. We provide seamless global shipping solutions tailored to your needs. Let us simplify your logistics and take your business further.
-    </p>
+  <h1>LEAVE YOUR CARGO TO EMERTAT FARABAR WITH EASE AND CONFIDENCE</h1>
+  <div class="truck-container">
+    <img src="{% static 'info/images/arrow-left.png' %}" class="arrow" alt="Left Arrow">
+    <img src="{% static 'info/images/truck.png' %}" class="truck-image" alt="Truck">
+    <img src="{% static 'info/images/arrow-right.png' %}" class="arrow" alt="Right Arrow">
+  </div>
+  <p class="description">
+    Welcome to our website, your trusted partner in international transportation...
+  </p>
 </div>
-
-</body>
-</html>
+{% endblock content %}

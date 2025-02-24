@@ -1,259 +1,176 @@
-<!DOCTYPE html>
+<!-- your_app/templates/price_inquiry.html -->
+{% extends "base.html" %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emertat Farabar Transportation Company</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #FFFFFF;
-            background: url('{% static "info/images/background_solid.jpg" %}') no-repeat center center fixed;
-            background-size: cover;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-        }
-        header .logo {
-            display: flex;
-            align-items: center;
-        }
-        header .logo img {
-            height: 80px;
-            margin-right: 10px;
-        }
-        header .temp_header {
-            margin-right: 20px;
-        }
-        .hidden-logo {
-            visibility: hidden;
-            height: 80px;
-            margin-right: 10px;
-        }
-        nav {
-            flex-grow: 1;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            display: inline-flex;
-            margin: 0;
-            padding: 0;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #FFFFFF;
-            font-size: 18px;
-        }
-        .price-inquiry-container {
-            text-align: center;
-            padding: 0px 20px;
-        }
-        .price-inquiry-container h1 {
-            font-size: 36px;
-            
-        }
-        .price-inquiry-container p {
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-        .forms-wrapper {
-            display: flex;
-            flex-wrap: wrap; /* Wrap for smaller screens */
-            justify-content: center;
-            gap: 20px;
-        }
-        .form-column {
-            background-color: #f0f0f0;
-            color: #000;
-            padding: 20px;
-            border-radius: 5px;
-            max-width: 300px;
-            width: 100%;
-        }
-        .form-column h2 {
-            color: #000;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-        .form-group {
-            margin-bottom: 12px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 4px;
-            font-weight: bold;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 6px;
-            box-sizing: border-box;
-        }
-        .submit-button {
-            display: block;
-            margin: 30px auto 50px auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
+{% block content %}
+<style>
+  body {
+    background: url('{% static "info/images/background_solid.jpg" %}') no-repeat center center fixed;
+    background-size: cover;
+  }
+  .price-inquiry-container {
+    text-align: center;
+    padding: 0px 20px;
+  }
+  .price-inquiry-container h1 {
+    font-size: 36px;
+  }
+  .price-inquiry-container p {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  .forms-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .form-column {
+    background-color: #f0f0f0;
+    color: #000;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 300px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .form-column h2 {
+    color: #000;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  .form-group {
+    margin-bottom: 12px;
+    text-align: left; /* So labels are aligned left */
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+  .submit-button {
+    display: block;
+    margin: 30px auto 50px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
-<header>
-    <div class="logo">
-        <img src="{% static 'info/images/logo2.png' %}" alt="Logo">
-    </div>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/why">Why us</a></li>
-            <li><a href="/team">Team</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/price-inquiry">Price Inquiry</a></li>
-        </ul>
-    </nav>
-    <h1 class="temp_header">Price Inquiry</h1>
-</header>
+  @media (max-width: 768px) {
+    .price-inquiry-container h1 {
+      font-size: 28px;
+    }
+  }
+</style>
 
 <div class="price-inquiry-container">
-    <p>Please fill out the forms, and our team will contact you as soon as possible.</p>
+  <h1>Price Inquiry</h1>
+  <p>Please fill out the forms, and our team will contact you as soon as possible.</p>
 
-    {% if messages %}
-        {% for message in messages %}
-            <script>alert("{{ message|escapejs }}");</script>
-        {% endfor %}
-    {% endif %}
-    <form method="POST" action="">
-        {% csrf_token %}
-        
-        <div class="forms-wrapper">
-            
-            <!-- Column 1: Contact Information -->
-            <div class="form-column">
-                <h2>Contact Information</h2>
-                
-                <div class="form-group">
-                    <label for="fullname">Full Name:</label>
-                    <!-- Add required attribute -->
-                    <input type="text" id="fullname" name="fullname" placeholder="Your full name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="company">Company Name (if applicable):</label>
-                    <!-- If you want it strictly required, add required. If optional, remove it -->
-                    <input type="text" id="company" name="company" placeholder="Company name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address:</label>
-                    <!-- Add required attribute -->
-                    <input type="email" id="email" name="email" placeholder="email@example.com" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <!-- Add required attribute -->
-                    <input type="tel" id="phone" name="phone" placeholder="e.g. +1 234 567 8900" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Preferred Contact Method:</label>
-                    <!-- Make sure at least one is chosen, but typically you'd handle that in the server-side validation as well -->
-                    <label><input type="radio" name="contactMethod" value="Email" required> Email</label>
-                    <label><input type="radio" name="contactMethod" value="Phone" required> Phone</label>
-                </div>
-            </div>
-            
-            <!-- Column 2: Shipment Details -->
-            <div class="form-column">
-                <h2>Shipment Details</h2>
-                
-                <div class="form-group">
-                    <label for="type_of_goods">Type of Goods:</label>
-                    <input type="text" id="type_of_goods" name="type_of_goods" placeholder="e.g. Electronics">
-                </div>
-                
-                <div class="form-group">
-                    <label for="goods_description">Description of Goods:</label>
-                    <textarea id="goods_description" name="goods_description" rows="3" placeholder="Short description"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="total_weight">Total Weight (kg):</label>
-                    <input type="number" id="total_weight" name="total_weight" placeholder="e.g. 100">
-                </div>
-                
-                <div class="form-group">
-                    <label for="dimensions">Dimensions (L × W × H in cm):</label>
-                    <input type="text" id="dimensions" name="dimensions" placeholder="e.g. 100x50x30">
-                </div>
-                
-                <div class="form-group">
-                    <label for="num_packages">Number of Packages:</label>
-                    <input type="number" id="num_packages" name="num_packages" placeholder="e.g. 10">
-                </div>
-                
-                <div class="form-group">
-                    <label for="cargo_value">Cargo Value (for insurance):</label>
-                    <input type="text" id="cargo_value" name="cargo_value" placeholder="e.g. 5000 USD">
-                </div>
-                
-                <div class="form-group">
-                    <label for="special_handling">Special Handling Requirements:</label>
-                    <textarea id="special_handling" name="special_handling" rows="3" placeholder="Describe special requirements"></textarea>
-                </div>
-            </div>
-            
-            <!-- Column 3: Transportation Details -->
-            <div class="form-column">
-                <h2>Transportation Details</h2>
-                
-                <div class="form-group">
-                    <label for="pickup_location">Pickup Location (City, Country):</label>
-                    <input type="text" id="pickup_location" name="pickup_location" placeholder="e.g. Tehran, Iran">
-                </div>
-                
-                <div class="form-group">
-                    <label for="delivery_location">Delivery Location (City, Country):</label>
-                    <input type="text" id="delivery_location" name="delivery_location" placeholder="e.g. Dubai, UAE">
-                </div>
-                
-                <div class="form-group">
-                    <label>Preferred Shipping Method:</label>
-                    <label><input type="radio" name="shipping_method" value="Air Freight"> Air Freight</label><br>
-                    <label><input type="radio" name="shipping_method" value="Sea Freight"> Sea Freight</label><br>
-                    <label><input type="radio" name="shipping_method" value="Road Freight"> Road Freight</label><br>
-                    <label><input type="radio" name="shipping_method" value="Rail Freight"> Rail Freight</label><br>
-                    <label><input type="radio" name="shipping_method" value="Multimodal Transport"> Multimodal Transport</label>
-                </div>
-                
-                <div class="form-group">
-                    <label for="shipping_date">Expected Shipping Date:</label>
-                    <input type="date" id="shipping_date" name="shipping_date">
-                </div>
-                
-                <div class="form-group">
-                    <label for="delivery_deadline">Delivery Deadline (if any):</label>
-                    <input type="date" id="delivery_deadline" name="delivery_deadline">
-                </div>
-                
-            </div>
-        </div><!-- /.forms-wrapper -->
-        
-        <input type="submit" class="submit-button" value="Submit">
-    </form>
+  {% if messages %}
+    {% for message in messages %}
+      <script>alert("{{ message|escapejs }}");</script>
+    {% endfor %}
+  {% endif %}
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <div class="forms-wrapper">
+      
+      <!-- Column 1: Contact Info -->
+      <div class="form-column">
+        <h2>Contact Information</h2>
+        <div class="form-group">
+          <label for="fullname">Full Name:</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="company">Company Name (if applicable):</label>
+          <input type="text" id="company" name="company" placeholder="Company name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" name="email" placeholder="email@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" placeholder="e.g. +1 234 567 8900" required>
+        </div>
+        <div class="form-group">
+          <label>Preferred Contact Method:</label>
+          <label><input type="radio" name="contactMethod" value="Email" required> Email</label>
+          <label><input type="radio" name="contactMethod" value="Phone" required> Phone</label>
+        </div>
+      </div>
+      
+      <!-- Column 2: Shipment Details -->
+      <div class="form-column">
+        <h2>Shipment Details</h2>
+        <div class="form-group">
+          <label for="type_of_goods">Type of Goods:</label>
+          <input type="text" id="type_of_goods" name="type_of_goods" placeholder="e.g. Electronics">
+        </div>
+        <div class="form-group">
+          <label for="goods_description">Description of Goods:</label>
+          <textarea id="goods_description" name="goods_description" rows="3" placeholder="Short description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="total_weight">Total Weight (kg):</label>
+          <input type="number" id="total_weight" name="total_weight" placeholder="e.g. 100">
+        </div>
+        <div class="form-group">
+          <label for="dimensions">Dimensions (L × W × H in cm):</label>
+          <input type="text" id="dimensions" name="dimensions" placeholder="e.g. 100x50x30">
+        </div>
+        <div class="form-group">
+          <label for="num_packages">Number of Packages:</label>
+          <input type="number" id="num_packages" name="num_packages" placeholder="e.g. 10">
+        </div>
+        <div class="form-group">
+          <label for="cargo_value">Cargo Value (for insurance):</label>
+          <input type="text" id="cargo_value" name="cargo_value" placeholder="e.g. 5000 USD">
+        </div>
+        <div class="form-group">
+          <label for="special_handling">Special Handling Requirements:</label>
+          <textarea id="special_handling" name="special_handling" rows="3" placeholder="Describe special requirements"></textarea>
+        </div>
+      </div>
+      
+      <!-- Column 3: Transportation Details -->
+      <div class="form-column">
+        <h2>Transportation Details</h2>
+        <div class="form-group">
+          <label for="pickup_location">Pickup Location (City, Country):</label>
+          <input type="text" id="pickup_location" name="pickup_location" placeholder="e.g. Tehran, Iran">
+        </div>
+        <div class="form-group">
+          <label for="delivery_location">Delivery Location (City, Country):</label>
+          <input type="text" id="delivery_location" name="delivery_location" placeholder="e.g. Dubai, UAE">
+        </div>
+        <div class="form-group">
+          <label>Preferred Shipping Method:</label>
+          <label><input type="radio" name="shipping_method" value="Air Freight"> Air Freight</label><br>
+          <label><input type="radio" name="shipping_method" value="Sea Freight"> Sea Freight</label><br>
+          <label><input type="radio" name="shipping_method" value="Road Freight"> Road Freight</label><br>
+          <label><input type="radio" name="shipping_method" value="Rail Freight"> Rail Freight</label><br>
+          <label><input type="radio" name="shipping_method" value="Multimodal Transport"> Multimodal Transport</label>
+        </div>
+        <div class="form-group">
+          <label for="shipping_date">Expected Shipping Date:</label>
+          <input type="date" id="shipping_date" name="shipping_date">
+        </div>
+        <div class="form-group">
+          <label for="delivery_deadline">Delivery Deadline (if any):</label>
+          <input type="date" id="delivery_deadline" name="delivery_deadline">
+        </div>
+      </div>
+    </div>
+    <input type="submit" class="submit-button" value="Submit">
+  </form>
 </div>
-
-</body>
-</html>
+{% endblock content %}

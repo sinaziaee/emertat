@@ -1,0 +1,32 @@
+<!-- your_app/templates/base.html -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emertat Farabar Transportation Company</title>
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #FFFFFF;
+    }
+    
+    /* A small global utility to ensure images scale well on mobile */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  {% include "partials/header.html" %}
+  
+  <div class="content">
+    {% block content %}{% endblock content %}
+  </div>
+</body>
+</html>
