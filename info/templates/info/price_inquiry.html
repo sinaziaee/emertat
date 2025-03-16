@@ -60,6 +60,88 @@
     font-size: 16px;
     cursor: pointer;
   }
+  
+  /* New styles for shipping method options */
+  .shipping-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .shipping-option {
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 10px 8px 32px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  .shipping-option:hover {
+    background-color: #f9f9f9;
+    border-color: #ccc;
+  }
+  
+  .shipping-option input[type="radio"] {
+    position: absolute;
+    left: -110px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+  }
+  
+  .shipping-option.selected {
+    background-color: #e6f7ff;
+    border-color: #1890ff;
+  }
+
+  /* Improved styles for email and phone input fields */
+  .input-with-icon {
+    position: relative;
+  }
+  
+  .input-with-icon input {
+    padding-left: 36px;
+    height: 38px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .input-with-icon input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    outline: none;
+  }
+  
+  .input-with-icon .icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    width: 16px;
+    height: 16px;
+  }
+
+  .contact-method-options {
+    display: flex;
+    gap: 15px;
+    margin-top: 8px;
+  }
+  
+  .contact-method-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .contact-method-option input[type="radio"] {
+    margin-right: 5px;
+  }
 
   @media (max-width: 768px) {
     .price-inquiry-container h1 {
@@ -95,16 +177,35 @@
         </div>
         <div class="form-group">
           <label for="email">Email Address:</label>
-          <input type="email" id="email" name="email" placeholder="email@example.com" required>
+          <div class="input-with-icon">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <input type="email" id="email" name="email" placeholder="email@example.com" required>
+          </div>
         </div>
         <div class="form-group">
           <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" placeholder="e.g. +1 234 567 8900" required>
+          <div class="input-with-icon">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (234) 567-8900" required pattern="[0-9+\s()-]*">
+          </div>
         </div>
         <div class="form-group">
           <label>Preferred Contact Method:</label>
-          <label><input type="radio" name="contactMethod" value="Email" required> Email</label>
-          <label><input type="radio" name="contactMethod" value="Phone" required> Phone</label>
+          <div class="contact-method-options">
+            <label class="contact-method-option">
+              <input type="radio" name="contactMethod" value="Email" required>
+              Email
+            </label>
+            <label class="contact-method-option">
+              <input type="radio" name="contactMethod" value="Phone" required>
+              Phone
+            </label>
+          </div>
         </div>
       </div>
       
@@ -154,23 +255,66 @@
         </div>
         <div class="form-group">
           <label>Preferred Shipping Method:</label>
-          <label><input type="radio" name="shipping_method" value="Air Freight"> Air Freight</label><br>
-          <label><input type="radio" name="shipping_method" value="Sea Freight"> Sea Freight</label><br>
-          <label><input type="radio" name="shipping_method" value="Road Freight"> Road Freight</label><br>
-          <label><input type="radio" name="shipping_method" value="Rail Freight"> Rail Freight</label><br>
-          <label><input type="radio" name="shipping_method" value="Multimodal Transport"> Multimodal Transport</label>
+          <div class="shipping-options">
+            <label class="shipping-option" for="air_freight">
+              <input type="radio" id="air_freight" name="shipping_method" value="Air Freight">
+              <span>Air Freight</span>
+            </label>
+            <label class="shipping-option" for="sea_freight">
+              <input type="radio" id="sea_freight" name="shipping_method" value="Sea Freight">
+              <span>Sea Freight</span>
+            </label>
+            <label class="shipping-option" for="road_freight">
+              <input type="radio" id="road_freight" name="shipping_method" value="Road Freight">
+              <span>Road Freight</span>
+            </label>
+            <label class="shipping-option" for="rail_freight">
+              <input type="radio" id="rail_freight" name="shipping_method" value="Rail Freight">
+              <span>Rail Freight</span>
+            </label>
+            <label class="shipping-option" for="multimodal">
+              <input type="radio" id="multimodal" name="shipping_method" value="Multimodal Transport">
+              <span>Multimodal Transport</span>
+            </label>
+          </div>
         </div>
         <div class="form-group">
-          <label for="shipping_date">Expected Shipping Date:</label>
-          <input type="date" id="shipping_date" name="shipping_date">
-        </div>
-        <div class="form-group">
-          <label for="delivery_deadline">Delivery Deadline (if any):</label>
-          <input type="date" id="delivery_deadline" name="delivery_deadline">
+          <label for="comments">Any Further Questions or Comments:</label>
+          <textarea id="comments" name="comments" rows="4" placeholder="Please share any additional information, questions, or special requirements"></textarea>
         </div>
       </div>
     </div>
     <input type="submit" class="submit-button" value="Submit">
   </form>
 </div>
+
+<script>
+  // Add highlight effect when a shipping option is selected
+  document.addEventListener('DOMContentLoaded', function() {
+    const shippingOptions = document.querySelectorAll('.shipping-option');
+    
+    shippingOptions.forEach(option => {
+      const radio = option.querySelector('input[type="radio"]');
+      
+      // Set initial state if option is pre-selected
+      if (radio.checked) {
+        option.classList.add('selected');
+      }
+      
+      // Add click event to the whole option container
+      option.addEventListener('click', function() {
+        // Remove 'selected' class from all options
+        shippingOptions.forEach(opt => {
+          opt.classList.remove('selected');
+        });
+        
+        // Add 'selected' class to clicked option
+        this.classList.add('selected');
+        
+        // Ensure radio button is checked
+        radio.checked = true;
+      });
+    });
+  });
+</script>
 {% endblock content %}
