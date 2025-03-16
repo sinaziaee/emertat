@@ -26,6 +26,8 @@
     justify-content: center;
     gap: 20px;
     padding: 20px 0;
+    max-width: 1320px; /* Accommodate 4 cards of 300px width plus gaps */
+    margin: 0 auto;
   }
   .team-card {
     background-color: #0D1A37;
@@ -34,7 +36,9 @@
     text-align: center;
     width: 300px;
     border-radius: 8px;
-    margin: 0 auto; /* Center the card itself */
+    flex: 0 0 calc(25% - 20px); /* Set to 25% width minus gap for 4 per row */
+    min-width: 250px; /* Minimum width to maintain readability */
+    box-sizing: border-box;
   }
   .team-card img {
     width: 150px;
@@ -54,13 +58,25 @@
     font-size: 16px;
     margin: 5px 0;
   }
+  
+  @media (max-width: 1200px) {
+    .team-card {
+      flex: 0 0 calc(33.33% - 20px); /* 3 cards per row on medium screens */
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .team-card {
+      flex: 0 0 calc(50% - 20px); /* 2 cards per row on smaller screens */
+    }
+  }
 
   @media (max-width: 768px) {
     .team-section h1 {
       font-size: 28px;
     }
     .team-card {
-      width: 100%; /* Make the card full width on smaller screens */
+      flex: 0 0 100%; /* Full width on mobile */
       max-width: 300px; /* Limit the maximum width */
     }
   }
@@ -99,6 +115,6 @@
         <p>Mike Johnson</p>
       </div>
     {% endif %}
-  </div>  
+  </div>
 </div>
 {% endblock content %}
