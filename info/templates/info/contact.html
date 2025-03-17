@@ -53,6 +53,14 @@
     padding: 20px;
     box-sizing: border-box;
   }
+  .social-icon {
+    margin-right: 10px;
+    color: #FFFFFF;
+  }
+  .address-block {
+    margin-top: 10px;
+    line-height: 1.6;
+  }
 
   @media (max-width: 768px) {
     .get-in-touch-text, .laptop-image {
@@ -87,17 +95,17 @@
         {% if contact and contact.email1 %}
           <div class="contact-item">{{ contact.email1 }}</div>
         {% else %}
-          <div class="contact-item">info@example.com</div>
+          <div class="contact-item">social.emertatfarabar@gmail.com</div>
         {% endif %}
         {% if contact and contact.email2 %}
           <div class="contact-item">{{ contact.email2 }}</div>
         {% else %}
-          <div class="contact-item">support@example.com</div>
+          <div class="contact-item">contact@emertatfarabar.com</div>
         {% endif %}
         {% if contact and contact.email3 %}
           <div class="contact-item">{{ contact.email3 }}</div>
         {% else %}
-          <div class="contact-item">sales@example.com</div>
+          <div class="contact-item">sales@emertatfarabar.com</div>
         {% endif %}
       </div>
       <div>
@@ -110,29 +118,52 @@
           </div>
         {% else %}
           <div class="contact-item">
-            <a href="https://www.example.com" style="color: #FFFFFF; text-decoration: none;">
-              https://www.example.com
+            <a href="https://emertatfarabar.com/" style="color: #FFFFFF; text-decoration: none;">
+              emertatfarabar.com
             </a>
           </div>
         {% endif %}
       </div>
       <div>
         <strong>Social Media</strong>
-        {% if contact and contact.social1 %}
-          <div class="contact-item">{{ contact.social1 }}</div>
+        {% if contact and contact.whatsapp %}
+          <div class="contact-item">
+            <a href="https://wa.me/{{ contact.whatsapp|cut:'+' }}" target="_blank" style="color: #FFFFFF; text-decoration: none;">
+              <i class="fab fa-whatsapp social-icon"></i>WhatsApp
+            </a>
+          </div>
         {% else %}
-          <div class="contact-item">Facebook: example</div>
+          <div class="contact-item">
+            <a href="https://wa.me/1234567890" target="_blank" style="color: #FFFFFF; text-decoration: none;">
+              <i class="fab fa-whatsapp social-icon"></i>WhatsApp
+            </a>
+          </div>
         {% endif %}
-        {% if contact and contact.social2 %}
-          <div class="contact-item">{{ contact.social2 }}</div>
+        {% if contact and contact.linkedin %}
+          <div class="contact-item">
+            <a href="{{ contact.linkedin }}" target="_blank" style="color: #FFFFFF; text-decoration: none;">
+              <i class="fab fa-linkedin social-icon"></i>LinkedIn
+            </a>
+          </div>
         {% else %}
-          <div class="contact-item">Twitter: example</div>
+          <div class="contact-item">
+            <a href="https://www.linkedin.com/company/example" target="_blank" style="color: #FFFFFF; text-decoration: none;">
+              <i class="fab fa-linkedin social-icon"></i>LinkedIn
+            </a>
+          </div>
         {% endif %}
-        {% if contact and contact.social3 %}
-          <div class="contact-item">{{ contact.social3 }}</div>
-        {% else %}
-          <div class="contact-item">Instagram: example</div>
-        {% endif %}
+      </div>
+      <div>
+        <strong>Address</strong>
+        <div class="address-block">
+          {% if contact and contact.address %}
+            {{ contact.address|linebreaks }}
+          {% else %}
+          Emertat Farabar intl. Transport company<br>
+          No. 213, Mahdi st., Eta'ati Ave., Marzdaran Blvd.<br>
+          Tehran, Iran<br>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
