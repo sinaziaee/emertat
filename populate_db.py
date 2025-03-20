@@ -27,14 +27,14 @@ for item in info_list:
 
 # Create and save a new Contact instance.
 contact = Contact(
-    phone1="+13688889955",
-    phone2="0987654321",
+    phone1="+98 992 265 1974",
+    phone2="+98 917 361 9345",
     email1="social.emertatfarabar@gmail.com",
-    email2="contact2@example.com",
-    email3="contact3@example.com",
+    email2="contact@emertatfarabar.com",
+    email3="sales@emertatfarabar.com",
     website="https://www.emertatfarabar.com",
-    social1="twitter_handle",
-    social2="facebook_handle",
-    social3="linkedin_handle"
+    social1="https://www.instagram.com/emertatfarabar/",
+    social2="https://www.facebook.com/emertatfarabar/",
+    social3="https://www.linkedin.com/company/emertat-farabar/"
 )
 contact.save()

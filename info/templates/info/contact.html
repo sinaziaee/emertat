@@ -82,12 +82,12 @@
         {% if contact and contact.phone1 %}
           <div class="contact-item">{{ contact.phone1 }}</div>
         {% else %}
-          <div class="contact-item">+1 234 567 890</div>
+          <div class="contact-item">+98 992 265 1974</div>
         {% endif %}
         {% if contact and contact.phone2 %}
           <div class="contact-item">{{ contact.phone2 }}</div>
         {% else %}
-          <div class="contact-item">+1 987 654 321</div>
+          <div class="contact-item">+98 917 361 9345</div>
         {% endif %}
       </div>
       <div>
@@ -126,32 +126,34 @@
       </div>
       <div>
         <strong>Social Media</strong>
-        {% if contact and contact.whatsapp %}
-          <div class="contact-item">
-            <a href="https://wa.me/{{ contact.whatsapp|cut:'+' }}" target="_blank" style="color: #FFFFFF; text-decoration: none;">
-              <i class="fab fa-whatsapp social-icon"></i>WhatsApp
-            </a>
-          </div>
-        {% else %}
-          <div class="contact-item">
-            <a href="https://wa.me/1234567890" target="_blank" style="color: #FFFFFF; text-decoration: none;">
-              <i class="fab fa-whatsapp social-icon"></i>WhatsApp
-            </a>
-          </div>
-        {% endif %}
-        {% if contact and contact.linkedin %}
-          <div class="contact-item">
-            <a href="{{ contact.linkedin }}" target="_blank" style="color: #FFFFFF; text-decoration: none;">
-              <i class="fab fa-linkedin social-icon"></i>LinkedIn
-            </a>
-          </div>
-        {% else %}
-          <div class="contact-item">
-            <a href="https://www.linkedin.com/company/example" target="_blank" style="color: #FFFFFF; text-decoration: none;">
-              <i class="fab fa-linkedin social-icon"></i>LinkedIn
-            </a>
-          </div>
-        {% endif %}
+        {% if contact and contact.instagram %}
+        <div class="contact-item">
+          <a href="https://www.instagram.com/{{ contact.instagram }}" target="_blank" style="color: #FFFFFF; text-decoration: none;">
+            <i class="fab fa-instagram social-icon"></i>Instagram
+          </a>
+        </div>
+      {% else %}
+        <div class="contact-item">
+          <a href="https://www.instagram.com/emertat_frabar/" target="_blank" style="color: #FFFFFF; text-decoration: none;">
+            <i class="fab fa-instagram social-icon"></i>Instagram
+          </a>
+        </div>
+      {% endif %}
+      
+      {% if contact and contact.linkedin %}
+        <div class="contact-item">
+          <a href="{{ contact.linkedin }}" target="_blank" style="color: #FFFFFF; text-decoration: none;">
+            <i class="fab fa-linkedin social-icon"></i>LinkedIn
+          </a>
+        </div>
+      {% else %}
+        <div class="contact-item">
+          <a href="https://www.linkedin.com/company/emertat-farabar/" target="_blank" style="color: #FFFFFF; text-decoration: none;">
+            <i class="fab fa-linkedin social-icon"></i>LinkedIn
+          </a>
+        </div>
+      {% endif %}
+      
       </div>
       <div>
         <strong>Address</strong>

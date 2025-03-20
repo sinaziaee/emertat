@@ -7,6 +7,14 @@
     background: url('{% static "info/images/background_about.jpg" %}') no-repeat center center fixed;
     background-size: cover;
   }
+
+  @media (max-width: 768px) {
+    body {
+      background: url('{% static "info/images/background_solid.jpg" %}') no-repeat center center fixed;
+      background-size: cover;
+    }
+  }
+
   .about-us-section {
     display: flex;
     justify-content: space-between;
